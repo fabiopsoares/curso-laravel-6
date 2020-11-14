@@ -1,5 +1,14 @@
 <?php
 
+Route::get('redirect3', function(){
+    return redirect()->route('url.name');
+});
+
+
+Route::get('/nome-teste', function(){
+    return 'Hey hey hey';
+})->name('url.name');
+
 Route::view('/view','welcome');
 
 Route::redirect('redirect1','redirect2');
