@@ -4,7 +4,7 @@ Route::get('/login', function(){
     return 'Login';
 })->name('login');
 
-Route::resource('products','ProductController');
+Route::resource('products','ProductController');//->middleware('auth');
 
 /*
 Route::delete('products/{id}','ProductController@destroy')->name('products.destroy');
