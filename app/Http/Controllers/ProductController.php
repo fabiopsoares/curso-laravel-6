@@ -50,7 +50,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        dd('cadastrando');
+        //dd($request->all());
+        //dd($request->only(['name','description']));
+        // dd($request->name);
+        //dd($request->description);
+        //$request->has('name') verificar se existe input
+        //$request->input('name')
+        // dd($request->input('teste','legal')); valor default para campos que não existe
+        //dd($request->except('name', '_token')); // pegar todos execption o informado
+        dd($request->except('name', '_token'));
     }
 
     /**
