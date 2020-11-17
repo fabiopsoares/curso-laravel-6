@@ -5,6 +5,19 @@
 
 <h1>Exibindo os produtos</h1>
 
+@include('admin.includes.alerts', ['content' => 'Alerta de preços de produtos'])
+
+<hr>
+
+@component('admin.components.card')
+    @slot('title')
+        <h1>Titulo card</h1>
+    @endslot
+    um card de exemplo
+@endcomponent
+
+<hr>
+
 @if (isset($products))
     @foreach ($products as $product)
     <p class="@if ($loop->last) last @endif">{{ $product }}</p>
