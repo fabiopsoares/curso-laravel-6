@@ -4,6 +4,7 @@
 @section('content')
 
 <h1>Exibindo os produtos</h1>
+<a href="{{ route('products.create') }}"> Cadastrar Produto</a>
 
 @include('admin.includes.alerts', ['content' => 'Alerta de preços de produtos'])
 
