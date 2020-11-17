@@ -63,6 +63,15 @@ class ProductController extends Controller
         //$request->photo->getClientOriginalName()
         //dd($request->file('photo')->store('products'));
         //dd($request->file('photo')->storeAs('products',$nameFile));
+
+        $request->validate([
+            'name' => 'required|min:3|max:255',
+            'description' => 'nullable|min:3|max:10000',
+            'photo' => 'required|image',
+        ]);
+
+        dd('ok');
+
         if($request->file('photo')->isValid()){
             $nameFile = $request->name.'.'.$request->photo->extension();
             dd($request->file('photo')->storeAs('products',$nameFile));

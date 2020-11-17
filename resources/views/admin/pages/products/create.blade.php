@@ -4,6 +4,13 @@
 
 @section('content')
 <h1>Cadastrar Movo Produto</h1>
+
+@if ($errors->any())
+    @foreach ($errors->all() as $error)
+        <li>{{$error}}</li>
+    @endforeach
+@endif
+
     <form action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <input type="text" name="name" id="name" placeholder="Nome:">
