@@ -7,6 +7,6 @@
     <title>Minha View</title>
 </head>
 <body>
-    {!!$teste!!}
+    {{ $teste }}
 </body>
 </html>

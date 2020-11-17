@@ -25,8 +25,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $teste = '<H1>Olá</h1>';
-        return view('admin.pages.products.index',compact('teste'));
+        $teste = 123;
+        $teste2 = 256;
+        $teste3 = 'valor';
+        return view('admin.pages.products.index',compact('teste','teste2','teste3'));
     }
 
     /**

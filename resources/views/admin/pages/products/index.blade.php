@@ -5,6 +5,59 @@
 
 <h1>Exibindo os produtos</h1>
 
-{{$teste}}
+@if ($teste === '123')
+     É igual
+@elseif($teste === 123)
+    É igual a 123
+@else
+    Não é igual
+@endif
+
+<br/>
+
+@unless ($teste === '123')
+abc
+@else
+234
+@endunless
+
+<br/>
+
+@isset($teste2)
+{{$teste2}}
+@else
+Não existe
+@endisset
+
+<br/>
+
+@empty($teste3)
+
+<p>Vazio</p>
+
+@endempty
+
+@auth
+ <p>Autenticado</p>
+ @else
+ <p>Não está autenticado</p>
+@endauth
+
+@guest
+<p>Não está autenticado</p>
+@endguest
+
+@switch($teste)
+    @case(1)
+        igual 1
+        @break
+    @case(2)
+    igual 2
+    @case(123)
+    igual 123
+        @break
+    @default
+    default
+@endswitch
 
 @endsection
