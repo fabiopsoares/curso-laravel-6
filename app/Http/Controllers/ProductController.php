@@ -58,7 +58,15 @@ class ProductController extends Controller
         //$request->input('name')
         // dd($request->input('teste','legal')); valor default para campos que não existe
         //dd($request->except('name', '_token')); // pegar todos execption o informado
-        dd($request->except('name', '_token'));
+        // dd($request->file('photo'));
+        //$request->photo->extension()
+        //$request->photo->getClientOriginalName()
+        //dd($request->file('photo')->store('products'));
+        //dd($request->file('photo')->storeAs('products',$nameFile));
+        if($request->file('photo')->isValid()){
+            $nameFile = $request->name.'.'.$request->photo->extension();
+            dd($request->file('photo')->storeAs('products',$nameFile));
+        }
     }
 
     /**
