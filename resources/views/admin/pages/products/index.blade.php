@@ -90,6 +90,14 @@ Não existe
 
 @endsection
 
+@push('styles')
 <style>
     .last {background: #CCC;}
 </style>
+@endpush
+
+@push('scripts')
+    <script>
+        document.body.style.background = '#efefef'
+    </script>
+@endpush
