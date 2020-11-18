@@ -5,17 +5,24 @@
 @section('content')
 <h1>Cadastrar Movo Produto</h1>
 
-@if ($errors->any())
-    @foreach ($errors->all() as $error)
-        <li>{{$error}}</li>
-    @endforeach
-@endif
+    @include('admin.includes.alerts')
 
-    <form action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('products.store')}}" method="post" enctype="multipart/form-data" class="form-group">
         @csrf
-    <input type="text" name="name" id="name" placeholder="Nome:" value="{{ old('name') }}">
-        <input type="text" name="description" id="description" placeholder="Descrição" value="{{ old('description') }}">
-        <input type="file" name="photo" id="photo">
-        <button type="submit">Enviar</button>
+        <div class="form-group">
+            <input type="text" class="form-group" name="name" id="name" placeholder="Nome:" value="{{ old('name') }}">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-group" name="price" id="price" placeholder="Preço:" value="{{ old('price') }}">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-group" name="description" id="description" placeholder="Descrição" value="{{ old('description') }}">
+        </div>
+        <div class="form-group">
+            <input type="file" class="form-group" name="image id="image">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Enviar</button>
+        </div>
     </form>
 @endsection

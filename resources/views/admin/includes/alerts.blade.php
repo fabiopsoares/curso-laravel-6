@@ -1,4 +1,7 @@
-<div class="alert">
-<p>Alert - {{$content ?? 'Não tem valor na váriavel'}}</p>
-{{-- teste --}}
-</div>
+@if ($errors->any())
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{$error}}</li>
+        @endforeach
+    </ul>
+@endif

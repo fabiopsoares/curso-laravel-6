@@ -57,7 +57,6 @@ class ProductController extends Controller
      */
     public function store(StoreUpdateProductRequest $request)
     {
-        dd('ok');
         //dd($request->all());
         //dd($request->only(['name','description']));
         // dd($request->name);
@@ -78,10 +77,14 @@ class ProductController extends Controller
             'photo' => 'required|image',
         ]);*/
 
-        if($request->file('photo')->isValid()){
+        /*if($request->file('photo')->isValid()){
             $nameFile = $request->name.'.'.$request->photo->extension();
             dd($request->file('photo')->storeAs('products',$nameFile));
-        }
+        }*/
+
+        $data = $request->only('name','description','price');
+        Product::create($data);
+        return redirect()->route('products.index');
     }
 
     /**
@@ -92,7 +95,17 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        //$product = Product::find($id);
+        //$product = Product::where('id',$id)->first();
+        $product = Product::find($id);
+
+        if(!$product){
+            return redirect()->back();
+        }else{
+            return view('admin.pages.products.show',[
+                'product' => $product
+            ]);
+        }
     }
 
     /**

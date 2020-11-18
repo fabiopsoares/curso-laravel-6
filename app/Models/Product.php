@@ -8,5 +8,6 @@ class Product extends Model
 {
     //protected $table = 'nometabelacustomizado';
 
+    protected $fillable = ['name', 'price', 'description', 'image'];
 
 }
