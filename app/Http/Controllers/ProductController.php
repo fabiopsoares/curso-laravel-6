@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdateProductRequest;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -26,11 +27,16 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $teste = 123;
-        $teste2 = 256;
-        $teste3 = [1,2,3,4,5,6,7,8,9,10];
-        $products = ['TV','Geladeira','Forno','Sofá'];
-        return view('admin.pages.products.index',compact('teste','teste2','teste3','products'));
+
+        //$products = Product::all(); --pegado todos
+        //$products = Product::get(); --pega todos
+        //$products = Product::paginate(20);
+
+        $products = Product::latest()->paginate(15);
+
+        return view('admin.pages.products.index',[
+            'products' => $products,
+        ]);
     }
 
     /**

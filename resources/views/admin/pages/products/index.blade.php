@@ -19,16 +19,40 @@
 
 <hr>
 
-@if (isset($products))
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($products as $product)
+            <tr>
+                <td>{{ $product->name }}</td>
+                <td>{{ $product->price }}</td>
+                <td><a href="">Detalhes</a></td>
+            </tr>
+            @endforeach
+    </tbody>
+</table>
+{!! $products->links() !!}
+
+@endsection
+
+{{--
+
+    @if (isset($products))
     @foreach ($products as $product)
-    <p class="@if ($loop->last) last @endif">{{ $product }}</p>
+    <p class="@if ($loop->last) last @endif">{{ $product->name }}</p>
     @endforeach
 @endif
 
 <hr>
 
 @forelse ($products as $product)
-<p class="@if ($loop->first) last @endif">{{ $product }}</p>
+<p class="@if ($loop->first) last @endif">{{ $product->name }}</p>
 @empty
 <p>Não existe produto cadastrado</p>
 @endforelse
@@ -102,3 +126,4 @@ Não existe
         document.body.style.background = '#efefef'
     </script>
 @endpush
+--}}

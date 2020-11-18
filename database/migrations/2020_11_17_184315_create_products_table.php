@@ -16,7 +16,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->unique();
-            $table->double('prince',10,2);
+            $table->double('price',10,2);
             $table->text('description');
             $table->string('image')->nullable();
             $table->timestamps();
