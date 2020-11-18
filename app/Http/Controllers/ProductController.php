@@ -10,11 +10,13 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     protected $request;
+    protected $product;
 
-    public function __construct(Request $request)
+    public function __construct(Request $request, Product $product)
     {
         //dd($request);
         $this->request = $request;
+        $this->product = $product;
         //$this->middleware('auth');
         //$this->middleware('auth')->only(['create','store']);
         //$this->middleware('auth')->except(['index','show']);
@@ -32,7 +34,7 @@ class ProductController extends Controller
         //$products = Product::get(); --pega todos
         //$products = Product::paginate(20);
 
-        $products = Product::latest()->paginate(15);
+        $products = $this->product->latest()->paginate(15);
 
         return view('admin.pages.products.index',[
             'products' => $products,
@@ -97,7 +99,7 @@ class ProductController extends Controller
     {
         //$product = Product::find($id);
         //$product = Product::where('id',$id)->first();
-        $product = Product::find($id);
+        $product = $this->product->find($id);
 
         if(!$product){
             return redirect()->back();
@@ -139,6 +141,14 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = $this->product->where('id', $id)->first();
+
+        if(!$product){
+            return redirect()->back();
+        }else{
+
+            $product->delete();
+            return redirect()->route('products.index');
+        }
     }
 }
