@@ -1,14 +1,13 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Cadastrar Novo Produto')
+@section('title', "Editar Produto {{$product->name}}")
 
 @section('content')
-<h1>Editar Produto {{ $id }}</h1>
-    <form action="{{route('products.update', $id)}}" method="post">
-        @csrf
+<h1>Editar Produto {{$product->name }} <a href="{{ route('products.index') }}"><<</a></h1>
+
+    <form action="{{route('products.update', $product->id)}}" method="post">
+
         @method('put')
-        <input type="text" name="name" id="name" placeholder="Nome:">
-        <input type="text" name="description" id="description" placeholder="Descrição">
-        <button type="submit">Enviar</button>
+       @include('admin.pages.products._partials.form')
     </form>
 @endsection

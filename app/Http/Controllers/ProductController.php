@@ -118,7 +118,15 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.pages.products.edit',compact('id'));
+        $product = $this->product->find($id);
+
+        if(!$product){
+            return redirect()->back();
+        }else{
+            return view('admin.pages.products.edit',[
+                'product' => $product
+            ]);
+        }
     }
 
     /**
@@ -130,7 +138,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd("Editando produto {$id}");
+        $product = $this->product->find($id);
+
+        if(!$product){
+            return redirect()->back();
+        }else{
+
+            $product->update($request->all());
+
+            return redirect()->route('products.index');
+        }
     }
 
     /**
