@@ -5,6 +5,13 @@
 
 <h1>Exibindo os produtos</h1>
 <a href="{{ route('products.create') }}" class="btn btn-primary"> Cadastrar Produto</a>
+<hr>
+<form action="{{ route('products.search')}}" method="post" class="form form-inline">
+    @csrf
+<input type="text" name="filter" placeholder="Filtrar" class="form-control" value="{{ $filters['filter'] ?? '' }}">
+<button type="submit" class="btn btn-info">Pesquisar</button>
+</form>
+
 {{--
 @include('admin.includes.alerts', ['content' => 'Alerta de preços de produtos'])
 
@@ -36,7 +43,13 @@
             @endforeach
     </tbody>
 </table>
-{!! $products->links() !!}
+
+@if (isset($filters))
+    {!! $products->appends($filters)->links() !!}
+@else
+
+    {!! $products->links() !!}
+@endif
 
 @endsection
 
