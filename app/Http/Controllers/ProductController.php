@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUpdateProductRequest;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -85,6 +86,12 @@ class ProductController extends Controller
         }*/
 
         $data = $request->only('name','description','price');
+
+        if($request->hasFile('image') && $request->image->isValid()){
+            $imagePath = $request->image->store('products');
+            $data['image'] = $imagePath;
+        }
+
         Product::create($data);
         return redirect()->route('products.index');
     }
@@ -144,7 +151,19 @@ class ProductController extends Controller
             return redirect()->back();
         }else{
 
-            $product->update($request->all());
+            $data = $request->all();
+
+            if($request->hasFile('image') && $request->image->isValid()){
+
+                if($product->image && Storage::exists($product->image)){
+                   Storage::delete($product->image);
+                }
+
+                $imagePath = $request->image->store('products');
+                $data['image'] = $imagePath;
+            }
+            //$product->update($request->all());
+            $product->update($data);
 
             return redirect()->route('products.index');
         }
@@ -163,6 +182,10 @@ class ProductController extends Controller
         if(!$product){
             return redirect()->back();
         }else{
+
+            if($product->image && Storage::exists($product->image)){
+                Storage::delete($product->image);
+             }
 
             $product->delete();
             return redirect()->route('products.index');

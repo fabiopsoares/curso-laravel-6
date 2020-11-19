@@ -11,7 +11,7 @@
     <input type="text" class="form-group" name="description" id="description" placeholder="Descrição" value="{{ $product->description ?? old('description') }}">
 </div>
 <div class="form-group">
-    <input type="file" class="form-group" name="image id="image">
+    <input type="file" class="form-group" name="image" id="image">
 </div>
 <div class="form-group">
     <button type="submit" class="btn btn-success">Enviar</button>

@@ -27,6 +27,7 @@
 <table class="table .table-striped ">
     <thead>
         <tr>
+            <th width="100">Imagem</th>
             <th>Nome</th>
             <th>Preço</th>
             <th width="100">Ações</th>
@@ -35,6 +36,11 @@
     <tbody>
         @foreach ($products as $product)
             <tr>
+                <td>
+                    @if ($product->image)
+                        <img src="{{ url("storage/{$product->image}") }}" alt="{{$product->name}}" style="max-width: 100px;">
+                    @endif
+                </td>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->price }}</td>
             <td><a href="{{ route('products.edit', $product->id) }}">Editar</a></td>
