@@ -1,4 +1,5 @@
 @include('admin.includes.alerts')
+
 @csrf
 <div class="form-group">
     <input type="text" class="form-group" name="name" id="name" placeholder="Nome:" value="{{ $product->name ?? old('name') }}">
