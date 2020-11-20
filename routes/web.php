@@ -8,8 +8,8 @@ Route::get('/login', function(){
     return 'Login';
 })->name('login');
 
-Route::any('products/search', 'ProductController@search')->name('products.search');
-Route::resource('products','ProductController');//->middleware('auth');
+Route::any('products/search', 'ProductController@search')->name('products.search')->middleware('auth');;
+Route::resource('products','ProductController')->middleware('auth');//->middleware('auth');
 
 /*
 Route::delete('products/{id}','ProductController@destroy')->name('products.destroy');
@@ -118,3 +118,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
+
+/*Auth::routes(['register' => false]);*/
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
